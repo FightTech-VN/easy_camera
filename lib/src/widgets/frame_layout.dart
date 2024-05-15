@@ -164,13 +164,15 @@ class _FrameLayoutWidgetState extends State<FrameLayoutWidget> with TimerMixin {
                             return Text(
                               '${value ~/ 3600}:${value ~/ 60}:${value % 60}',
                               textAlign: TextAlign.center,
-                              style:
-                                  Theme.of(context).textTheme.caption?.copyWith(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16,
-                                        letterSpacing: -0.3,
-                                      ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  ?.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16,
+                                    letterSpacing: -0.3,
+                                  ),
                             );
                           },
                         ),
@@ -222,7 +224,7 @@ class _FrameLayoutWidgetState extends State<FrameLayoutWidget> with TimerMixin {
                                         e.name.toUpperCase(),
                                         style: Theme.of(context)
                                             .textTheme
-                                            .caption
+                                            .titleSmall
                                             ?.copyWith(
                                               color: Colors.white,
                                               fontSize: 13,
@@ -246,7 +248,7 @@ class _FrameLayoutWidgetState extends State<FrameLayoutWidget> with TimerMixin {
                                   'Cancel',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .caption
+                                      .titleSmall
                                       ?.copyWith(
                                           color: Colors.white, fontSize: 16),
                                 ),

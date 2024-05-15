@@ -1,3 +1,6 @@
+## 0.0.20
++ Fixed compile error `flutter 3.22.0`
+
 ## 0.0.18
 + FIX CAMERA Front
 
