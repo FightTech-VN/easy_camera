@@ -1,6 +1,6 @@
 name: easy_camera_plus
 description: Easy custom camera plus
-version: 0.0.20
+version: 0.0.21
 homepage: https://github.com/FightTech-VN/easy_camera_plus
 issue_tracker: https://github.com/FightTech-VN/easy_camera_plus/issues
 
@@ -14,11 +14,11 @@ dependencies:
   
   cupertino_icons: ^1.0.5
 
-  camera: ^0.10.0+4
   path_provider: ^2.0.11
-  
+  camera: ^0.10.0+4
   video_player: ^2.4.7
   image: ^3.2.0
+  exif: ^3.3.0
 
   # state management
   flutter_bloc: ^8.1.1
