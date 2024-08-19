@@ -1,3 +1,7 @@
+## 0.0.21
++ Fixed compile error `flutter 3.24.0`
++ Fix ratate `exifData`
+
 ## 0.0.20
 + Fixed compile error `flutter 3.22.0`
 

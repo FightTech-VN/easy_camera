@@ -63,28 +63,26 @@ Future<File> fixExifRotation(String imagePath, {File? fileRaw}) async {
   img.Image fixedImage;
 
   if (height < width) {
-    final s = exifData['Image Orientation'];
+    final printable = exifData['Image Orientation']?.printable;
 
+    ///
+    /// {Image ImageWidth: 1280, Image ImageLength: 720, Image Make: [71, 111, 111, 103, 108, 101], Image Model: [115, 100, 107, 95, 103, 112, 104, 111, 110, 101, 54, 52, 95, 97, 114, 109, 54, 52], Image Orientation: Rotated 90 CCW, Image DateTime: 2024:08:20 02:48:53, Image ExifOffset: 142, EXIF ExposureTime: 23/10000, EXIF FNumber: 173/100, EXIF ISOSpeedRatings: 100, EXIF ExifVersion: 0220, EXIF DateTimeOriginal: 2024:08:20 02:48:53, EXIF DateTimeDigitized: 2024:08:20 02:48:53, EXIF ShutterSpeedValue: 43917/5000, EXIF ApertureValue: 3163/2000, EXIF SubjectDistance: 49/500, EXIF Flash: No flash function, EXIF FocalLength: 219/50, EXIF SubSecTime: 281, EXIF SubSecTimeOriginal: 281, EXIF SubSecTimeDigitized: 281, EXIF ColorSpace: 65534, EXIF ExifImageWidth: 1280, EXIF ExifImageLength: 720, EXIF ExposureMode: Auto Exposure, EXIF WhiteBalance: Auto, EXIF DigitalZoomRatio: 63/20, EXIF FocalLengthIn35mmFilm: 18952, EXIF SubjectDistanceRange: 1}
+    ///
     if (kDebugMode) {
-      print('[CameraScteen] Rotating image necessary');
-      print('[CameraScteen] $exifData');
-      print('[CameraScteen] $exifData');
-      print('[CameraScteen] printable: $s');
+      print('[ImageService] Rotating image necessary');
+      print('[ImageService] $exifData');
+      print('[ImageService] $exifData');
+      print('[ImageService] printable: $printable');
     }
-    // rotate
 
-    if (s?.printable == 'Rotated 90 CCW') {
+    // rotate
+    if (printable == 'Rotated 90 CCW') {
       fixedImage = img.copyRotate(originalImage, -90);
-    } else if (exifData['Image Orientation']
-            ?.printable
-            .contains('Horizontal') ==
-        true) {
+    } else if (printable?.contains('Horizontal') == true) {
       fixedImage = img.copyRotate(originalImage, 90);
-    } else if (exifData['Image Orientation']?.printable.contains('180') ==
-        true) {
+    } else if (printable?.contains('180') == true) {
       fixedImage = img.copyRotate(originalImage, -90);
-    } else if (exifData['Image Orientation']?.printable.contains('CCW') ==
-        true) {
+    } else if (printable?.contains('CCW') == true) {
       fixedImage = img.copyRotate(originalImage, 180);
     } else {
       fixedImage = img.copyRotate(originalImage, 0);
