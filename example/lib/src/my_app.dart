@@ -35,23 +35,21 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String? text;
   String? imagePath;
+  String? imagePath2;
   Uint8List? videoFile;
 
   Widget _buildImage() {
     if (imagePath?.contains('/data/user/') == true) {
       return Image.file(
         File(imagePath!),
-        fit: BoxFit.fitWidth,
       );
     }
     return imagePath?.contains('http') == true
         ? Image.network(
             imagePath!,
-            fit: BoxFit.fitWidth,
           )
         : Image.asset(
             imagePath!,
-            fit: BoxFit.fitWidth,
           );
   }
 
@@ -66,7 +64,11 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           TextButton.icon(
             onPressed: () {
-              context.startCamera(cameraType: CameraType.photo).then((value) {
+              context
+                  .startCamera(
+                cameraType: CameraType.photo,
+              )
+                  .then((value) {
                 setState(() {
                   imagePath = value;
                 });
@@ -88,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   imagePath = value;
                   text = value;
                 });
+               
               });
             },
             icon: const Icon(Icons.photo_album),
@@ -141,11 +144,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Center(child: Text(text ?? '-')),
-            if (imagePath != null)
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: _buildImage(),
-              ),
+            if (imagePath != null) _buildImage(),
+         
             if (text?.isNotEmpty ?? false) VideoApp(path: text!)
           ],
         ),

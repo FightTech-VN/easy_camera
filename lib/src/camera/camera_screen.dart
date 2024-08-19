@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 import '../../easy_camera_plus.dart';
 import '../services/device_service.dart';
-import '../services/image_service.dart';
 import '../widgets/frame_layout.dart';
 
 const double kAspectRatioDefault = 9 / 16;
@@ -108,6 +108,11 @@ class _CameraScreenState extends State<CameraScreen> {
         return null;
       }
       final file = await controller!.takePicture();
+      
+      if (Platform.isAndroid) {
+        final f = await fixExifRotation(file.path, fileRaw: File(file.path));
+        return f.path;
+      }
 
       return file.path;
     } on CameraException catch (e) {
@@ -193,7 +198,11 @@ class _CameraScreenState extends State<CameraScreen> {
             _onTakePhoto().then((value) {
               if (value != null) {
                 ImageService.cropSquare(value, value, sizeFramePixel)
-                    .then((img) => Navigator.of(context).pop(img));
+                    .then((img) {
+                  if (context.mounted) {
+                    Navigator.of(context).pop(img);
+                  }
+                });
               }
             });
             break;
@@ -202,7 +211,9 @@ class _CameraScreenState extends State<CameraScreen> {
               _startVideoRecording();
             } else {
               _stopVideoRecording().then((value) {
-                Navigator.of(context).pop(value);
+                if (context.mounted) {
+                  Navigator.of(context).pop(value);
+                }
               });
             }
             break;
