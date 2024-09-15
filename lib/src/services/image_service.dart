@@ -22,10 +22,10 @@ class ImageService {
 
       final destImage = img.copyCrop(
         src,
-        dxCrop.toInt(),
-        dyCrop.toInt(),
-        sizeFrame.width.toInt(),
-        sizeFrame.height.toInt(),
+        x: dxCrop.toInt(),
+        y: dyCrop.toInt(),
+        width: sizeFrame.width.toInt(),
+        height: sizeFrame.height.toInt(),
       );
 
       final jpg = img.encodeJpg(destImage);
@@ -40,7 +40,7 @@ class ImageService {
 
 Future<File> fixExifRotation(String imagePath, {File? fileRaw}) async {
   final originalFile = File(imagePath);
-  final List<int> imageBytes = await (fileRaw ?? originalFile).readAsBytes();
+  final imageBytes = await (fileRaw ?? originalFile).readAsBytes();
 
   final originalImage = img.decodeImage(imageBytes);
 
@@ -77,15 +77,15 @@ Future<File> fixExifRotation(String imagePath, {File? fileRaw}) async {
 
     // rotate
     if (printable == 'Rotated 90 CCW') {
-      fixedImage = img.copyRotate(originalImage, -90);
+      fixedImage = img.copyRotate(originalImage, angle: -90);
     } else if (printable?.contains('Horizontal') == true) {
-      fixedImage = img.copyRotate(originalImage, 90);
+      fixedImage = img.copyRotate(originalImage, angle: 90);
     } else if (printable?.contains('180') == true) {
-      fixedImage = img.copyRotate(originalImage, -90);
+      fixedImage = img.copyRotate(originalImage, angle: -90);
     } else if (printable?.contains('CCW') == true) {
-      fixedImage = img.copyRotate(originalImage, 180);
+      fixedImage = img.copyRotate(originalImage, angle: 180);
     } else {
-      fixedImage = img.copyRotate(originalImage, 0);
+      fixedImage = img.copyRotate(originalImage, angle: 0);
     }
 
     // if(!(height >= width)) {

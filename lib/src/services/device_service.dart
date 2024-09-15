@@ -10,7 +10,7 @@ class DeviceService {
     final appDirectory = await getApplicationDocumentsDirectory();
     final String videoDirectory =
         '${appDirectory.path}/${isVideo ? 'Videos' : 'Image'}';
-    
+
     await Directory(videoDirectory).create(recursive: true);
     final String currentTime = DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -30,7 +30,13 @@ class DeviceService {
     final offsetX = (src.width - min(src.width, src.height)) ~/ 2;
     final offsetY = (src.height - min(src.width, src.height)) ~/ 2;
 
-    Image destImage = copyCrop(src, offsetX, offsetY, cropSize, cropSize);
+    Image destImage = copyCrop(
+      src,
+      x: offsetX,
+      y: offsetY,
+      width: cropSize,
+      height: cropSize,
+    );
 
     if (flip) {
       destImage = flipVertical(destImage);
