@@ -108,7 +108,7 @@ class _CameraScreenState extends State<CameraScreen> {
         return null;
       }
       final file = await controller!.takePicture();
-      
+
       if (Platform.isAndroid) {
         final f = await fixExifRotation(file.path, fileRaw: File(file.path));
         return f.path;

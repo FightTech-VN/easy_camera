@@ -19,7 +19,7 @@ extension CameraBuildContextExt on BuildContext {
     );
   }
 
-   Future<T?> takePhotoAvatar<T>() async {
+  Future<T?> takePhotoAvatar<T>() async {
     return Navigator.of(this).push(
       MaterialPageRoute(
         builder: (context) => const CameraScreen(

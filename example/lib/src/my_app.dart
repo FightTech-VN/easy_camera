@@ -90,7 +90,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   imagePath = value;
                   text = value;
                 });
-               
               });
             },
             icon: const Icon(Icons.photo_album),
@@ -145,7 +144,6 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Center(child: Text(text ?? '-')),
             if (imagePath != null) _buildImage(),
-         
             if (text?.isNotEmpty ?? false) VideoApp(path: text!)
           ],
         ),

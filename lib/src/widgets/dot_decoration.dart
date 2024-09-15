@@ -8,7 +8,7 @@ class DottedDecoration extends Decoration {
   final BorderRadius? borderRadius;
   final List<int> dash;
   final double strokeWidth;
-  
+
   const DottedDecoration({
     this.shape = Shape.line,
     this.linePosition = LinePosition.bottom,
@@ -32,7 +32,7 @@ class _DottedDecotatorPainter extends BoxPainter {
   BorderRadius? borderRadius;
   List<int> dash;
   double strokeWidth;
-  
+
   _DottedDecotatorPainter(this.shape, this.linePosition, this.color,
       this.borderRadius, this.dash, this.strokeWidth) {
     borderRadius = borderRadius ?? BorderRadius.circular(0);
