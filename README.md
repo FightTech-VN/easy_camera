@@ -1,4 +1,5 @@
 # Easy Camera
+pub.dev: https://pub.dev/packages/easy_camera_plus
 
 + Custom frame camera view
 + Support record video with camera
