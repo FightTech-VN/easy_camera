@@ -1,3 +1,6 @@
+## 1.0.0
++ Support check image exif for Android
+
 ## 0.0.21
 + Fixed compile error `flutter 3.24.0`
 + Fix ratate `exifData`

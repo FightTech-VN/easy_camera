@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../../easy_camera_plus.dart';
 import '../services/device_service.dart';
+import '../services/image_exif.dart';
 import '../widgets/frame_layout.dart';
 
 const double kAspectRatioDefault = 9 / 16;
@@ -110,7 +111,7 @@ class _CameraScreenState extends State<CameraScreen> {
       final file = await controller!.takePicture();
 
       if (Platform.isAndroid) {
-        final f = await fixExifRotation(file.path, fileRaw: File(file.path));
+        final f = await fixExifRotation(file.path);
         return f.path;
       }
 
