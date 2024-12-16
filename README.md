@@ -32,3 +32,6 @@ pub.dev: https://pub.dev/packages/easy_camera_plus
               label: const Text('Take Photo'),
             ),
 ```
+
+# screenshot
+![Alt text](docs/screenshot.png)
